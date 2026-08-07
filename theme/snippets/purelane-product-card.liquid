@@ -1,0 +1,105 @@
+{% comment %}
+  Purelane shop shelf card.
+  Params: product (required), badge (optional string), section (section object for IDs)
+{% endcomment %}
+{%- liquid
+  assign card_product = product
+  assign variant = card_product.selected_or_first_available_variant
+  assign badge_label = badge
+
+  if badge_label == blank and card_product.metafields.custom.badge != blank
+    assign badge_label = card_product.metafields.custom.badge.value | default: card_product.metafields.custom.badge
+  endif
+
+  if badge_label == blank
+    for tag in card_product.tags
+      assign tag_down = tag | downcase
+      if tag_down == 'best seller' or tag_down == 'top rated' or tag_down == 'new'
+        assign badge_label = tag
+        break
+      endif
+    endfor
+  endif
+
+  assign rating_val = card_product.metafields.custom.rating.value | default: card_product.metafields.custom.rating
+  assign review_count = card_product.metafields.custom.review_count.value | default: card_product.metafields.custom.review_count
+
+  assign compare_at = variant.compare_at_price
+  assign price = variant.price
+  assign show_compare = false
+  assign percent_off = 0
+  if compare_at != blank and compare_at > price and price > 0
+    assign show_compare = true
+    assign percent_off = compare_at | minus: price | times: 100.0 | divided_by: compare_at | round
+  endif
+
+  assign form_id = 'PurelaneProductForm-' | append: section.id | append: '-' | append: card_product.id
+-%}
+
+<article class="glass card rv">
+  <a class="shot" href="{{ card_product.url }}" aria-label="{{ card_product.title | escape }}">
+    {%- if badge_label != blank -%}
+      <span class="pill">{{ badge_label | escape }}</span>
+    {%- endif -%}
+    {%- if card_product.featured_media != blank -%}
+      {%- assign img_alt = card_product.featured_media.alt | default: card_product.title -%}
+      {{
+        card_product.featured_media
+        | image_url: width: 600
+        | image_tag:
+          class: 'pimg',
+          loading: 'lazy',
+          widths: '200, 300, 400, 600',
+          sizes: '(min-width: 860px) 25vw, 45vw',
+          alt: img_alt
+      }}
+    {%- else -%}
+      <span class="pimg pl-placeholder" role="img" aria-label="No product image"></span>
+    {%- endif -%}
+  </a>
+
+  <h4>
+    <a href="{{ card_product.url }}">{{ card_product.title | escape }}</a>
+  </h4>
+
+  {%- if rating_val != blank or review_count != blank -%}
+    <div class="rate">
+      {%- if rating_val != blank -%}
+        <b>★ {{ rating_val }}</b>
+      {%- else -%}
+        <b>★</b>
+      {%- endif -%}
+      {%- if review_count != blank -%}
+        <span>· {{ review_count }} reviews</span>
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+
+  <div class="pr">
+    <strong>{{ price | money }}</strong>
+    {%- if show_compare -%}
+      <s>{{ compare_at | money }}</s>
+      {%- if percent_off > 0 -%}
+        <em>{{ percent_off }}% off</em>
+      {%- endif -%}
+    {%- endif -%}
+  </div>
+
+  {%- if card_product.available -%}
+    {%- form 'product', card_product, id: form_id, class: 'purelane-product-form', data-type: 'add-to-cart-form' -%}
+      <input type="hidden" name="id" value="{{ variant.id }}"{% if variant.available == false %} disabled{% endif %}>
+      <button
+        type="submit"
+        name="add"
+        class="btn btn-ghost btn-sm"
+        {% if variant.available == false %}disabled{% endif %}
+      >
+        Add to cart
+      </button>
+    {%- endform -%}
+  {%- else -%}
+    <button type="button" class="btn btn-ghost btn-sm" disabled>
+      Sold out
+    </button>
+  {%- endif -%}
+</article>

@@ -1,0 +1,373 @@
+{
+  "sections": {
+    "purelane_atmosphere": {
+      "type": "purelane-atmosphere",
+      "settings": {}
+    },
+    "purelane_hero": {
+      "type": "purelane-hero",
+      "blocks": {
+        "badge_leaf": {
+          "type": "badge",
+          "settings": {
+            "icon": "leaf",
+            "text": "Plant\npowered",
+            "strip_text": "Plant powered"
+          }
+        },
+        "badge_shield": {
+          "type": "badge",
+          "settings": {
+            "icon": "shield",
+            "text": "Safe for\nkids & pets",
+            "strip_text": "Kids & pet safe"
+          }
+        },
+        "badge_ban": {
+          "type": "badge",
+          "settings": {
+            "icon": "ban",
+            "text": "Zero harsh\nchemicals",
+            "strip_text": "Zero harsh chem"
+          }
+        },
+        "slide_1": {
+          "type": "slide",
+          "settings": {
+            "label": "Single bottle",
+            "price": "₹200",
+            "compare_at": "₹299",
+            "cut_label": "33% off",
+            "bottle_1": "kbtl",
+            "bottle_2": "none",
+            "bottle_3": "none"
+          }
+        },
+        "slide_2": {
+          "type": "slide",
+          "settings": {
+            "label": "Any 2 products",
+            "price": "₹349",
+            "compare_at": "₹598",
+            "cut_label": "Save ₹249",
+            "bottle_1": "tbtl",
+            "bottle_2": "kbtl",
+            "bottle_3": "none"
+          }
+        },
+        "slide_3": {
+          "type": "slide",
+          "settings": {
+            "label": "Any 3 products",
+            "price": "₹499",
+            "compare_at": "₹897",
+            "cut_label": "Save ₹398",
+            "bottle_1": "tbtl",
+            "bottle_2": "mbtl",
+            "bottle_3": "kbtl"
+          }
+        }
+      },
+      "block_order": [
+        "badge_leaf",
+        "badge_shield",
+        "badge_ban",
+        "slide_1",
+        "slide_2",
+        "slide_3"
+      ],
+      "settings": {
+        "anchor_id": "",
+        "badges_label": "Product promises",
+        "heading": "Clean That Lasts",
+        "accent_word": "Lasts",
+        "heading_html": "",
+        "lede": "Homecare that works on the toughest grime, made from plants. Kind to your home, your family and the world outside it.",
+        "primary_label": "Shop now",
+        "primary_link": "#shop",
+        "secondary_label": "How it works",
+        "secondary_link": "#combos"
+      }
+    },
+    "purelane_reviews": {
+      "type": "purelane-reviews",
+      "blocks": {
+        "review_anita": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "title": "Works like a charm",
+            "body": "Finally an eco option that cleans as well as the chemical detergent I used for years, and it smells better.",
+            "author": "Anita",
+            "product_label": "Laundry detergent"
+          }
+        },
+        "review_priya": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "title": "Best dishwash ever",
+            "body": "Our old dishwash left my help with dry, cracked skin. That stopped completely after we switched.",
+            "author": "Priya",
+            "product_label": "Dishwash gel"
+          }
+        },
+        "review_sunita": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "title": "Great product, great packaging",
+            "body": "Very soft on hands with a lovely fragrance, and it feels good to be using far less plastic.",
+            "author": "Sunita",
+            "product_label": "Liquid handwash"
+          }
+        },
+        "review_rohit": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "title": "Dog friendly",
+            "body": "We switched because chemical floor cleaners were setting off my dog's allergies. No reactions since.",
+            "author": "Rohit S.",
+            "product_label": "Floor cleaner"
+          }
+        },
+        "review_verified": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "title": "Sparkling taps again",
+            "body": "Hard water had ruined our bathroom fittings. Two sprays and the scale wipes straight off, no scrubbing.",
+            "author": "Verified buyer",
+            "product_label": "Tap cleaner"
+          }
+        }
+      },
+      "block_order": [
+        "review_anita",
+        "review_priya",
+        "review_sunita",
+        "review_rohit",
+        "review_verified"
+      ],
+      "settings": {
+        "kicker": "That's what they said",
+        "rating_text": "4.8",
+        "reviews_count_label": "from 8,000+ reviews",
+        "homes_label": "Loved by <b>12 lakh+</b> homes",
+        "rail_label": "Customer reviews"
+      }
+    },
+    "purelane_combos": {
+      "type": "purelane-combos",
+      "blocks": {
+        "combo_kitchen": {
+          "type": "combo",
+          "settings": {
+            "title": "Kitchen essentials",
+            "product_count_label": "3 products",
+            "description": "Includes: Foaming Kitchen Cleaner, Dishwash Gel & Tap Cleaner. Everything for a sparkling kitchen, no need to pick separately.",
+            "price": "₹499",
+            "compare_at": "₹897",
+            "save_label": "You save ₹398",
+            "save_em": "Save ₹398",
+            "flag": "Most popular",
+            "highlight": false,
+            "fine_print": "Inclusive of all taxes · COD available",
+            "button_label": "Shop bundle",
+            "button_link": "#bundles",
+            "item_1_caption": "Cuts grease instantly",
+            "item_2_caption": "Squeaky clean dishes",
+            "item_3_caption": "Melts hard water stains",
+            "item_1_bottle": "kitchen",
+            "item_2_bottle": "dish",
+            "item_3_bottle": "tap"
+          }
+        },
+        "combo_laundry": {
+          "type": "combo",
+          "settings": {
+            "title": "Laundry care bundle",
+            "product_count_label": "3 products",
+            "description": "Includes: Laundry Detergent, Fabric Conditioner & Machine Cleaner Powder. Softer, fresher wash, all in one box.",
+            "price": "₹499",
+            "compare_at": "₹947",
+            "save_label": "You save ₹448",
+            "save_em": "Save ₹448",
+            "flag": "",
+            "highlight": false,
+            "fine_print": "Inclusive of all taxes · COD available",
+            "button_label": "Shop bundle",
+            "button_link": "#bundles",
+            "item_1_caption": "Removes tough stains & odour",
+            "item_2_caption": "Softens & freshens every wash",
+            "item_3_caption": "Deep-cleans your machine",
+            "item_1_bottle": "laundry",
+            "item_2_bottle": "none",
+            "item_3_bottle": "wm"
+          }
+        },
+        "combo_home": {
+          "type": "combo",
+          "settings": {
+            "title": "Complete home bundle",
+            "product_count_label": "5 products",
+            "description": "Includes: Kitchen Cleaner, Laundry Detergent, Floor Cleaner, Toilet Cleaner & Handwash. Our biggest saving box.",
+            "price": "₹799",
+            "compare_at": "₹1,495",
+            "save_label": "Biggest saving",
+            "save_em": "Save ₹696",
+            "flag": "Best value",
+            "highlight": true,
+            "fine_print": "Inclusive of all taxes · COD available",
+            "button_label": "Shop bundle",
+            "button_link": "#bundles",
+            "item_1_caption": "Cuts grease instantly",
+            "item_2_caption": "Kills 99.9% germs",
+            "item_3_caption": "Gentle hydration for hands",
+            "item_1_bottle": "kitchen",
+            "item_2_bottle": "floor",
+            "item_3_bottle": "handwash"
+          }
+        },
+        "combo_bath": {
+          "type": "combo",
+          "settings": {
+            "title": "Bathroom deep clean",
+            "product_count_label": "3 products",
+            "description": "Includes: Toilet Cleaner, Tap Cleaner & Magic Eraser. A complete bathroom refresh in one box.",
+            "price": "₹499",
+            "compare_at": "₹897",
+            "save_label": "You save ₹398",
+            "save_em": "Save ₹398",
+            "flag": "",
+            "highlight": false,
+            "fine_print": "Inclusive of all taxes · COD available",
+            "button_label": "Shop bundle",
+            "button_link": "#bundles",
+            "item_1_caption": "Kills 99.9% germs",
+            "item_2_caption": "Melts hard water stains",
+            "item_3_caption": "Scrubs away soap scum",
+            "item_1_bottle": "toilet",
+            "item_2_bottle": "tap",
+            "item_3_bottle": "eraser"
+          }
+        },
+        "combo_hardwater": {
+          "type": "combo",
+          "settings": {
+            "title": "Hard water solution kit",
+            "product_count_label": "2 products",
+            "description": "Includes: Tap Cleaner & Toilet Cleaner. A quick, focused fix for hard water stains across the home.",
+            "price": "₹349",
+            "compare_at": "₹598",
+            "save_label": "You save ₹249",
+            "save_em": "Save ₹249",
+            "flag": "",
+            "highlight": false,
+            "fine_print": "Inclusive of all taxes · COD available",
+            "button_label": "Shop bundle",
+            "button_link": "#bundles",
+            "item_1_caption": "Melts hard water stains",
+            "item_2_caption": "Fights limescale in the bowl",
+            "item_3_caption": "",
+            "item_1_bottle": "tap",
+            "item_2_bottle": "toilet",
+            "item_3_bottle": "none"
+          }
+        }
+      },
+      "block_order": [
+        "combo_kitchen",
+        "combo_laundry",
+        "combo_home",
+        "combo_bath",
+        "combo_hardwater"
+      ],
+      "settings": {
+        "kicker": "Pre-built to save you money",
+        "heading": "Best selling combos",
+        "lede": "Swipe through the boxes people order most. Each one is already priced below buying the same products on their own.",
+        "swipe_cue": "Swipe for more combos",
+        "rail_note": "Tapping \"Shop bundle\" opens the bundle picker with these products already added. You can still swap anything before you pay."
+      }
+    },
+    "purelane_bundles": {
+      "type": "purelane-bundles",
+      "blocks": {
+        "tier_2": {
+          "type": "tier",
+          "settings": {
+            "tag": "Starter",
+            "qty": "2",
+            "qty_label": "Products",
+            "price": "₹349",
+            "compare_at": "₹598",
+            "per_product_note": "Flat ₹174 per product",
+            "highlight": false,
+            "features": "Pick any two products\nFree shipping across India",
+            "button_label": "Build this box",
+            "button_link": "#shop"
+          }
+        },
+        "tier_3": {
+          "type": "tier",
+          "settings": {
+            "tag": "Most popular",
+            "qty": "3",
+            "qty_label": "Products",
+            "price": "₹499",
+            "compare_at": "₹897",
+            "per_product_note": "Flat ₹166 per product",
+            "highlight": true,
+            "features": "Pick any three products\nCovers kitchen and laundry\nFree shipping across India",
+            "button_label": "Build this box",
+            "button_link": "#shop"
+          }
+        },
+        "tier_5": {
+          "type": "tier",
+          "settings": {
+            "tag": "Whole home",
+            "qty": "5",
+            "qty_label": "Products",
+            "price": "₹799",
+            "compare_at": "₹1495",
+            "per_product_note": "Flat ₹160 per product",
+            "highlight": false,
+            "features": "Pick any five products\nEvery room in one order\nFree shipping across India",
+            "button_label": "Build this box",
+            "button_link": "#shop"
+          }
+        }
+      },
+      "block_order": [
+        "tier_2",
+        "tier_3",
+        "tier_5"
+      ],
+      "settings": {
+        "kicker": "Build your bundle",
+        "heading": "One box. Every room.",
+        "lede": "Mix and match across kitchen, laundry, home and skin. One flat price, no code needed, free shipping either way."
+      }
+    },
+    "purelane_shop": {
+      "type": "purelane-shop",
+      "settings": {
+        "kicker": "Bestsellers",
+        "heading": "Loved by 30,000 homes",
+        "product_list": [],
+        "products_to_show": 8
+      }
+    }
+  },
+  "order": [
+    "purelane_atmosphere",
+    "purelane_hero",
+    "purelane_reviews",
+    "purelane_combos",
+    "purelane_bundles",
+    "purelane_shop"
+  ]
+}

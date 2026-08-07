@@ -1,0 +1,454 @@
+{% render 'purelane-assets' %}
+
+{%- liquid
+  assign accent_word = section.settings.accent_word | default: 'Lasts'
+  assign heading_raw = section.settings.heading | default: 'Clean That Lasts'
+  assign heading_parts = heading_raw | split: ' '
+-%}
+
+<div class="purelane">
+  <section
+    {% if section.settings.anchor_id != blank %}id="{{ section.settings.anchor_id | escape }}"{% endif %}
+    class="hero"
+    data-scene="1"
+    data-section-id="{{ section.id }}"
+  >
+    <div class="hero-grid">
+      {%- if section.blocks.size > 0 -%}
+        <div class="badges glass-2" aria-label="{{ section.settings.badges_label | escape }}">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'badge' -%}
+              <div class="badge" {{ block.shopify_attributes }}>
+                <span class="bi">{% render 'purelane-icon', icon: block.settings.icon %}</span>
+                <span>{{ block.settings.text | newline_to_br }}</span>
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+
+      <div class="hero-copy">
+        <h1 class="d1 rv">
+          {%- if section.settings.heading_html != blank -%}
+            {{ section.settings.heading_html }}
+          {%- else -%}
+            {%- for word in heading_parts -%}
+              {%- if word == accent_word -%}
+                <span class="lime">{{ word | escape }}</span>
+              {%- else -%}
+                {{ word | escape }}
+              {%- endif -%}
+              {%- unless forloop.last -%}<br>{%- endunless -%}
+            {%- endfor -%}
+          {%- endif -%}
+        </h1>
+
+        {% render 'purelane-rule', class: 'rv rv-d1' %}
+
+        {%- if section.settings.lede != blank -%}
+          <p class="lede rv rv-d2">{{ section.settings.lede | escape }}</p>
+        {%- endif -%}
+
+        <div class="hero-cta rv rv-d3">
+          {%- if section.settings.primary_label != blank -%}
+            <a class="btn btn-primary" href="{{ section.settings.primary_link | default: '#shop' }}">
+              {{ section.settings.primary_label | escape }}
+              {% render 'purelane-icon', icon: 'arrow' %}
+            </a>
+          {%- endif -%}
+          {%- if section.settings.secondary_label != blank -%}
+            <a class="btn btn-ghost" href="{{ section.settings.secondary_link | default: '#combos' }}">
+              {{ section.settings.secondary_label | escape }}
+            </a>
+          {%- endif -%}
+        </div>
+
+        {%- assign badge_blocks = section.blocks | where: 'type', 'badge' -%}
+        {%- if badge_blocks.size > 0 -%}
+          <div class="badgestrip rv rv-d4">
+            {%- for block in badge_blocks -%}
+              <div class="glass-2">
+                {% render 'purelane-icon', icon: block.settings.icon %}
+                {{ block.settings.strip_text | default: block.settings.text | escape }}
+              </div>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      </div>
+
+      {%- assign slide_blocks = section.blocks | where: 'type', 'slide' -%}
+      {%- if slide_blocks.size > 0 -%}
+        <div class="hero-prod" data-purelane-hero data-section-id="{{ section.id }}">
+          <div class="hstage" data-purelane-hstage>
+            {%- for block in slide_blocks -%}
+              {%- liquid
+                assign slide_class = 'hs' | append: forloop.index
+                assign on_class = ''
+                if forloop.first
+                  assign on_class = ' on'
+                endif
+
+                assign img1 = block.settings.image_1
+                assign img2 = block.settings.image_2
+                assign img3 = block.settings.image_3
+                if img1 == blank and block.settings.product_1 != blank
+                  assign img1 = block.settings.product_1.featured_image
+                endif
+                if img2 == blank and block.settings.product_2 != blank
+                  assign img2 = block.settings.product_2.featured_image
+                endif
+                if img3 == blank and block.settings.product_3 != blank
+                  assign img3 = block.settings.product_3.featured_image
+                endif
+
+                assign bottle1 = block.settings.bottle_1 | default: 'kbtl'
+                assign bottle2 = block.settings.bottle_2 | default: 'tbtl'
+                assign bottle3 = block.settings.bottle_3 | default: 'mbtl'
+              -%}
+              <div class="hslide {{ slide_class }}{{ on_class }}" data-n="{{ forloop.index }}" {{ block.shopify_attributes }}>
+                {%- if img1 != blank or bottle1 != 'none' -%}
+                  <span
+                    class="hp a d1{% if img1 == blank %} p-{{ bottle1 }}{% endif %}"
+                    role="img"
+                    aria-label="{{ block.settings.product_1.title | default: block.settings.label | escape }}"
+                    {% if img1 != blank %}style="background-image:url({{ img1 | image_url: width: 800 }});"{% endif %}
+                  ></span>
+                {%- endif -%}
+                {%- if img2 != blank or bottle2 != 'none' -%}
+                  <span
+                    class="hp b d2{% if img2 == blank %} p-{{ bottle2 }}{% endif %}"
+                    role="img"
+                    aria-label="{{ block.settings.product_2.title | default: block.settings.label | escape }}"
+                    {% if img2 != blank %}style="background-image:url({{ img2 | image_url: width: 800 }});"{% endif %}
+                  ></span>
+                {%- endif -%}
+                {%- if img3 != blank or bottle3 != 'none' -%}
+                  <span
+                    class="hp c d3{% if img3 == blank %} p-{{ bottle3 }}{% endif %}"
+                    role="img"
+                    aria-label="{{ block.settings.product_3.title | default: block.settings.label | escape }}"
+                    {% if img3 != blank %}style="background-image:url({{ img3 | image_url: width: 800 }});"{% endif %}
+                  ></span>
+                {%- endif -%}
+                <div class="glass-2 ptag">
+                  {%- if block.settings.label != blank -%}
+                    <span class="lbl">{{ block.settings.label | escape }}</span>
+                  {%- endif -%}
+                  <span class="val">
+                    {%- if block.settings.price != blank -%}
+                      <strong>{{ block.settings.price | escape }}</strong>
+                    {%- endif -%}
+                    {%- if block.settings.compare_at != blank -%}
+                      <s>{{ block.settings.compare_at | escape }}</s>
+                    {%- endif -%}
+                  </span>
+                  {%- if block.settings.cut_label != blank -%}
+                    <span class="cut">{{ block.settings.cut_label | escape }}</span>
+                  {%- endif -%}
+                </div>
+              </div>
+            {%- endfor -%}
+          </div>
+          <div class="hdots" data-purelane-hdots role="tablist" aria-label="Hero product slides">
+            {%- for block in slide_blocks -%}
+              <button
+                type="button"
+                class="{% if forloop.first %}on{% endif %}"
+                aria-label="{{ block.settings.label | default: 'Show slide' | escape }} {{ forloop.index }}"
+                data-slide-index="{{ forloop.index0 }}"
+              ></button>
+            {%- endfor -%}
+          </div>
+        </div>
+      {%- endif -%}
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Purelane hero",
+  "tag": "div",
+  "class": "section-purelane-hero",
+  "settings": [
+    {
+      "type": "text",
+      "id": "anchor_id",
+      "label": "Section HTML id",
+      "default": ""
+    },
+    {
+      "type": "text",
+      "id": "badges_label",
+      "label": "Badges aria label",
+      "default": "Product promises"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading (words become lines)",
+      "default": "Clean That Lasts"
+    },
+    {
+      "type": "text",
+      "id": "accent_word",
+      "label": "Accent word",
+      "default": "Lasts",
+      "info": "This word is wrapped in the lime accent span."
+    },
+    {
+      "type": "html",
+      "id": "heading_html",
+      "label": "Heading HTML override",
+      "info": "Optional. If set, replaces the auto-split heading. Use <span class=\"lime\"> for accent."
+    },
+    {
+      "type": "textarea",
+      "id": "lede",
+      "label": "Lede",
+      "default": "Homecare that works on the toughest grime, made from plants. Kind to your home, your family and the world outside it."
+    },
+    {
+      "type": "text",
+      "id": "primary_label",
+      "label": "Primary CTA label",
+      "default": "Shop now"
+    },
+    {
+      "type": "url",
+      "id": "primary_link",
+      "label": "Primary CTA link"
+    },
+    {
+      "type": "text",
+      "id": "secondary_label",
+      "label": "Secondary CTA label",
+      "default": "How it works"
+    },
+    {
+      "type": "url",
+      "id": "secondary_link",
+      "label": "Secondary CTA link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "badge",
+      "name": "Badge",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "leaf", "label": "Leaf" },
+            { "value": "shield", "label": "Shield" },
+            { "value": "ban", "label": "Ban" },
+            { "value": "check", "label": "Check" },
+            { "value": "arrow", "label": "Arrow" }
+          ],
+          "default": "leaf"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Badge text (desktop)",
+          "default": "Plant\npowered",
+          "info": "Line breaks become <br>."
+        },
+        {
+          "type": "text",
+          "id": "strip_text",
+          "label": "Badge text (mobile strip)",
+          "default": "Plant powered"
+        }
+      ]
+    },
+    {
+      "type": "slide",
+      "name": "Hero slide",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Price label",
+          "default": "Single bottle"
+        },
+        {
+          "type": "text",
+          "id": "price",
+          "label": "Price display",
+          "default": "₹200"
+        },
+        {
+          "type": "text",
+          "id": "compare_at",
+          "label": "Compare-at display",
+          "default": "₹299"
+        },
+        {
+          "type": "text",
+          "id": "cut_label",
+          "label": "Cut / save label",
+          "default": "33% off"
+        },
+        {
+          "type": "select",
+          "id": "bottle_1",
+          "label": "Bottle asset 1 (fallback)",
+          "info": "Used when no product/image is set. Matches prototype SVG bottles.",
+          "options": [
+            { "value": "none", "label": "None" },
+            { "value": "kbtl", "label": "Kitchen bottle (tall)" },
+            { "value": "tbtl", "label": "Tap bottle (tall)" },
+            { "value": "mbtl", "label": "Metal bottle (tall)" },
+            { "value": "kitchen", "label": "Kitchen pack" },
+            { "value": "tap", "label": "Tap pack" },
+            { "value": "metal", "label": "Metal pack" },
+            { "value": "dish", "label": "Dishwash" },
+            { "value": "floor", "label": "Floor" },
+            { "value": "laundry", "label": "Laundry" },
+            { "value": "toilet", "label": "Toilet" },
+            { "value": "handwash", "label": "Handwash" },
+            { "value": "wm", "label": "Machine cleaner" },
+            { "value": "eraser", "label": "Eraser" }
+          ],
+          "default": "kbtl"
+        },
+        {
+          "type": "select",
+          "id": "bottle_2",
+          "label": "Bottle asset 2 (fallback)",
+          "options": [
+            { "value": "none", "label": "None" },
+            { "value": "kbtl", "label": "Kitchen bottle (tall)" },
+            { "value": "tbtl", "label": "Tap bottle (tall)" },
+            { "value": "mbtl", "label": "Metal bottle (tall)" },
+            { "value": "kitchen", "label": "Kitchen pack" },
+            { "value": "tap", "label": "Tap pack" },
+            { "value": "metal", "label": "Metal pack" },
+            { "value": "dish", "label": "Dishwash" },
+            { "value": "floor", "label": "Floor" },
+            { "value": "laundry", "label": "Laundry" },
+            { "value": "toilet", "label": "Toilet" },
+            { "value": "handwash", "label": "Handwash" },
+            { "value": "wm", "label": "Machine cleaner" },
+            { "value": "eraser", "label": "Eraser" }
+          ],
+          "default": "none"
+        },
+        {
+          "type": "select",
+          "id": "bottle_3",
+          "label": "Bottle asset 3 (fallback)",
+          "options": [
+            { "value": "none", "label": "None" },
+            { "value": "kbtl", "label": "Kitchen bottle (tall)" },
+            { "value": "tbtl", "label": "Tap bottle (tall)" },
+            { "value": "mbtl", "label": "Metal bottle (tall)" },
+            { "value": "kitchen", "label": "Kitchen pack" },
+            { "value": "tap", "label": "Tap pack" },
+            { "value": "metal", "label": "Metal pack" },
+            { "value": "dish", "label": "Dishwash" },
+            { "value": "floor", "label": "Floor" },
+            { "value": "laundry", "label": "Laundry" },
+            { "value": "toilet", "label": "Toilet" },
+            { "value": "handwash", "label": "Handwash" },
+            { "value": "wm", "label": "Machine cleaner" },
+            { "value": "eraser", "label": "Eraser" }
+          ],
+          "default": "none"
+        },
+        {
+          "type": "product",
+          "id": "product_1",
+          "label": "Product 1"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_1",
+          "label": "Image 1 override"
+        },
+        {
+          "type": "product",
+          "id": "product_2",
+          "label": "Product 2"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_2",
+          "label": "Image 2 override"
+        },
+        {
+          "type": "product",
+          "id": "product_3",
+          "label": "Product 3"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_3",
+          "label": "Image 3 override"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Purelane hero",
+      "blocks": [
+        {
+          "type": "badge",
+          "settings": {
+            "icon": "leaf",
+            "text": "Plant\npowered",
+            "strip_text": "Plant powered"
+          }
+        },
+        {
+          "type": "badge",
+          "settings": {
+            "icon": "shield",
+            "text": "Safe for\nkids & pets",
+            "strip_text": "Kids & pet safe"
+          }
+        },
+        {
+          "type": "badge",
+          "settings": {
+            "icon": "ban",
+            "text": "Zero harsh\nchemicals",
+            "strip_text": "Zero harsh chem"
+          }
+        },
+        {
+          "type": "slide",
+          "settings": {
+            "label": "Single bottle",
+            "price": "₹200",
+            "compare_at": "₹299",
+            "cut_label": "33% off"
+          }
+        },
+        {
+          "type": "slide",
+          "settings": {
+            "label": "Any 2 products",
+            "price": "₹349",
+            "compare_at": "₹598",
+            "cut_label": "Save ₹249"
+          }
+        },
+        {
+          "type": "slide",
+          "settings": {
+            "label": "Any 3 products",
+            "price": "₹499",
+            "compare_at": "₹897",
+            "cut_label": "Save ₹398"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

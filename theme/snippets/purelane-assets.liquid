@@ -1,0 +1,14 @@
+{% comment %}
+  Loads Purelane CSS/JS and Google fonts.
+  Note: {% render %} isolates assigns, so the guard only helps when the parent
+  already set purelane_assets_loaded (layout does this on index).
+  Duplicate <link> tags are harmless (browser cache).
+{% endcomment %}
+{%- unless purelane_assets_loaded -%}
+  {%- assign purelane_assets_loaded = true -%}
+  {{ 'purelane.css' | asset_url | stylesheet_tag }}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="{{ 'purelane.js' | asset_url }}" defer="defer"></script>
+{%- endunless -%}

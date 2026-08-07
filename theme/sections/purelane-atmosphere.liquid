@@ -1,0 +1,54 @@
+{% render 'purelane-assets' %}
+
+<div class="purelane pl-atmosphere" aria-hidden="true">
+  <div class="scenes" data-d="1" data-purelane-scenes>
+    <div class="scene s1 on"></div>
+    <div class="scene s2"></div>
+    <div class="scene s3"></div>
+    <div class="scene s4"></div>
+    <div class="water" data-purelane-water>
+      <div class="wl wl-a" style="--px:0;--py:0">
+        <div class="sv" style="background:
+          radial-gradient(42% 28% at 18% 22%, rgba(255,255,255,.55), transparent 70%),
+          radial-gradient(36% 24% at 78% 18%, rgba(255,255,255,.35), transparent 72%),
+          radial-gradient(50% 34% at 52% 68%, rgba(255,255,255,.28), transparent 75%);
+          width:100%;height:100%;"></div>
+      </div>
+      <div class="wl wl-b" style="--px:0;--py:0">
+        <div class="sv" style="background:
+          radial-gradient(38% 30% at 64% 42%, rgba(255,255,255,.4), transparent 70%),
+          radial-gradient(44% 26% at 22% 74%, rgba(255,255,255,.22), transparent 72%);
+          width:100%;height:100%;"></div>
+      </div>
+      <div class="wl wl-c">
+        <div class="sv" style="background:linear-gradient(105deg, transparent 30%, rgba(255,255,255,.18) 48%, transparent 62%);width:100%;height:100%;"></div>
+      </div>
+      <div class="wl wl-s">
+        <div class="sv" style="background:linear-gradient(180deg, rgba(255,255,255,.35) 0%, transparent 28%);width:100%;height:100%;"></div>
+      </div>
+    </div>
+    <div class="bub" aria-hidden="true">
+      <span style="--x:12%;--s:8px;--dur:18s;--dly:0s;--drift:18px"></span>
+      <span style="--x:28%;--s:5px;--dur:22s;--dly:3s;--drift:-22px"></span>
+      <span style="--x:46%;--s:7px;--dur:20s;--dly:7s;--drift:12px"></span>
+      <span style="--x:62%;--s:4px;--dur:26s;--dly:1s;--drift:-16px"></span>
+      <span style="--x:78%;--s:9px;--dur:19s;--dly:5s;--drift:24px"></span>
+      <span style="--x:88%;--s:6px;--dur:24s;--dly:9s;--drift:-10px"></span>
+    </div>
+    <div class="vig"></div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Purelane atmosphere",
+  "tag": "div",
+  "class": "section-purelane-atmosphere",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Purelane atmosphere"
+    }
+  ]
+}
+{% endschema %}

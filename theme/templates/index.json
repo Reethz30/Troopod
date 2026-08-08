@@ -77,11 +77,9 @@
         "slide_3"
       ],
       "settings": {
-        "anchor_id": "",
         "badges_label": "Product promises",
         "heading": "Clean That Lasts",
         "accent_word": "Lasts",
-        "heading_html": "",
         "lede": "Homecare that works on the toughest grime, made from plants. Kind to your home, your family and the world outside it.",
         "primary_label": "Shop now",
         "primary_link": "#shop",
@@ -194,7 +192,6 @@
             "compare_at": "₹947",
             "save_label": "You save ₹448",
             "save_em": "Save ₹448",
-            "flag": "",
             "highlight": false,
             "fine_print": "Inclusive of all taxes · COD available",
             "button_label": "Shop bundle",
@@ -240,7 +237,6 @@
             "compare_at": "₹897",
             "save_label": "You save ₹398",
             "save_em": "Save ₹398",
-            "flag": "",
             "highlight": false,
             "fine_print": "Inclusive of all taxes · COD available",
             "button_label": "Shop bundle",
@@ -263,14 +259,12 @@
             "compare_at": "₹598",
             "save_label": "You save ₹249",
             "save_em": "Save ₹249",
-            "flag": "",
             "highlight": false,
             "fine_print": "Inclusive of all taxes · COD available",
             "button_label": "Shop bundle",
             "button_link": "#bundles",
             "item_1_caption": "Melts hard water stains",
             "item_2_caption": "Fights limescale in the bowl",
-            "item_3_caption": "",
             "item_1_bottle": "tap",
             "item_2_bottle": "toilet",
             "item_3_bottle": "none"
@@ -360,14 +354,34 @@
         "product_list": [],
         "products_to_show": 8
       }
+    },
+    "purelane_ingredients": {
+      "type": "purelane-ingredients",
+      "settings": {}
+    },
+    "purelane_how": {
+      "type": "purelane-how",
+      "settings": {}
+    },
+    "purelane_range": {
+      "type": "purelane-range",
+      "settings": {}
+    },
+    "purelane_whybundles": {
+      "type": "purelane-whybundles",
+      "settings": {}
     }
   },
   "order": [
     "purelane_atmosphere",
     "purelane_hero",
     "purelane_reviews",
+    "purelane_ingredients",
+    "purelane_how",
     "purelane_combos",
     "purelane_bundles",
-    "purelane_shop"
+    "purelane_shop",
+    "purelane_range",
+    "purelane_whybundles"
   ]
 }

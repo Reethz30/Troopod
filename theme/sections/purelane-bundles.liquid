@@ -80,6 +80,26 @@
                     {%- endif -%}
                   {%- endfor -%}
                 </div>
+              {%- else -%}
+                {%- if block.settings.qty == '2' or forloop.index == 1 -%}
+                  <div class="tierpix" aria-hidden="true">
+                    <span class="pimg p-combo2" role="img" aria-label="Purelane combo pack"></span>
+                  </div>
+                {%- elsif block.settings.qty == '3' or forloop.index == 2 -%}
+                  <div class="tierpix" aria-hidden="true">
+                    <span class="pimg p-kitchen" role="img" aria-label="Purelane foaming kitchen cleaner"></span>
+                    <span class="pimg p-tap" role="img" aria-label="Purelane tap cleaner"></span>
+                    <span class="pimg p-dish" role="img" aria-label="Purelane dishwash gel"></span>
+                  </div>
+                {%- else -%}
+                  <div class="tierpix five" aria-hidden="true">
+                    <span class="pimg p-kitchen" role="img" aria-label="Purelane foaming kitchen cleaner"></span>
+                    <span class="pimg p-tap" role="img" aria-label="Purelane tap cleaner"></span>
+                    <span class="pimg p-floor" role="img" aria-label="Purelane floor cleaner"></span>
+                    <span class="pimg p-toilet" role="img" aria-label="Purelane toilet cleaner"></span>
+                    <span class="pimg p-laundry" role="img" aria-label="Purelane laundry detergent"></span>
+                  </div>
+                {%- endif -%}
               {%- endif -%}
 
               <div class="qty">

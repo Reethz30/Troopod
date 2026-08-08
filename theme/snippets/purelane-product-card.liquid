@@ -5,24 +5,24 @@
 {%- liquid
   assign card_product = product
   assign variant = card_product.selected_or_first_available_variant
-  assign badge_label = badge
 
-  if badge_label == blank and card_product.metafields.custom.badge != blank
-    assign badge_label = card_product.metafields.custom.badge.value | default: card_product.metafields.custom.badge
+  assign badge_label = badge
+  if badge_label == blank
+    assign badge_label = card_product.metafields.custom.custom_badge.value
   endif
 
   if badge_label == blank
     for tag in card_product.tags
       assign tag_down = tag | downcase
-      if tag_down == 'best seller' or tag_down == 'top rated' or tag_down == 'new'
+      if tag_down == 'best seller' or tag_down == 'top rated' or tag_down == 'new' or tag_down == 'popular'
         assign badge_label = tag
         break
       endif
     endfor
   endif
 
-  assign rating_val = card_product.metafields.custom.rating.value | default: card_product.metafields.custom.rating
-  assign review_count = card_product.metafields.custom.review_count.value | default: card_product.metafields.custom.review_count
+  assign rating_val = card_product.metafields.custom.custom_rating.value
+  assign review_count = card_product.metafields.custom.custom_review_count.value
 
   assign compare_at = variant.compare_at_price
   assign price = variant.price
@@ -66,8 +66,6 @@
     <div class="rate">
       {%- if rating_val != blank -%}
         <b>★ {{ rating_val }}</b>
-      {%- else -%}
-        <b>★</b>
       {%- endif -%}
       {%- if review_count != blank -%}
         <span>· {{ review_count }} reviews</span>
@@ -98,8 +96,6 @@
       </button>
     {%- endform -%}
   {%- else -%}
-    <button type="button" class="btn btn-ghost btn-sm" disabled>
-      Sold out
-    </button>
+    <button type="button" class="btn btn-ghost btn-sm" disabled>Sold out</button>
   {%- endif -%}
 </article>

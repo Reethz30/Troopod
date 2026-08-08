@@ -1,0 +1,101 @@
+{% render 'purelane-assets' %}
+
+<div class="purelane">
+  <!-- Pillars -->
+  <section class="sec" id="how" data-scene="2">
+    <div class="wrap">
+      <div class="pillars">
+        <article class="glass pillar rv">
+          <span class="pi">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8.5" r="3.2"/><circle cx="16.4" cy="6.6" r="2.2"/><circle cx="15" cy="13" r="2.8"/><circle cx="8.6" cy="15.6" r="2.1"/><path d="M4 21h16"/></svg>
+          </span>
+          <h3 class="d3">Less scrubbing</h3>
+          <p class="body-s">A foaming formulation. The foam clings to grease and lifts it, so you wipe instead of scrub.</p>
+          <a class="btn btn-ghost btn-sm" href="#shop">Learn more</a>
+        </article>
+        <article class="glass pillar rv rv-d2">
+          <span class="pi">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4.5 6v6.2c0 4.3 3.1 7.6 7.5 8.8 4.4-1.2 7.5-4.5 7.5-8.8V6L12 3Z"/><path d="m9 12 2.2 2.2L15.4 10"/></svg>
+          </span>
+          <h3 class="d3">Clean ingredients</h3>
+          <p class="body-s">No sulphates, no chlorine, no synthetic fragrance. Nothing on the label you would not want near your food.</p>
+          <a class="btn btn-ghost btn-sm" href="#ingredients">Learn more</a>
+        </article>
+        <article class="glass pillar rv rv-d3">
+          <span class="pi">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-9.4A4.1 4.1 0 0 1 12 8a4.1 4.1 0 0 1 7 2.6c0 5-7 9.4-7 9.4Z"/></svg>
+          </span>
+          <h3 class="d3">Safe around everyone</h3>
+          <p class="body-s">Gentle on hands, safe around kids and pets, and it leaves no toxic residue on the surfaces you touch every day.</p>
+          <a class="btn btn-ghost btn-sm" href="#proof">Learn more</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Proof -->
+  <section class="sec" id="proof" data-scene="3">
+    <div class="wrap">
+      <div class="glass sec-pad rv">
+        <div class="proof">
+          <div class="proof-l">
+            <span class="kicker">Why it works</span>
+            <h2 class="d2" style="margin-top:12px">Tough on grime.<br>Gentle on everything else.</h2>
+            <p class="body-s" style="max-width:40ch">Every formula is built on plant-derived cleansers and essential oils. It behaves exactly like the cleaner you are used to, minus the things you never signed up for.</p>
+            <a class="btn btn-primary" href="#ingredients">See the ingredient list
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13m-5-6 6 6-6 6"/></svg>
+            </a>
+          </div>
+          <div class="glass-2 rot" id="rot" aria-hidden="true">
+            <div class="frame">
+              <span class="pimg p-kitchen on" role="img" aria-label="Purelane foaming kitchen cleaner" data-name="Kitchen cleaner" data-note="Foam lifts grease, no scrubbing"></span>
+              <span class="pimg p-tap" role="img" aria-label="Purelane tap cleaner and limescale remover" data-name="Tap &amp; limescale" data-note="Melts hard water stains"></span>
+              <span class="pimg p-laundry" role="img" aria-label="Purelane non-toxic laundry detergent" data-name="Laundry detergent" data-note="Tough on odour, soft on fabric"></span>
+              <span class="pimg p-toilet" role="img" aria-label="Purelane non-toxic toilet cleaner" data-name="Toilet cleaner" data-note="Kills 99.9% of germs"></span>
+              <span class="pimg p-floor" role="img" aria-label="Purelane natural herbal floor cleaner" data-name="Floor cleaner" data-note="Neem powered, pet safe"></span>
+              <span class="pimg p-dish" role="img" aria-label="Purelane organic dishwash liquid gel" data-name="Dishwash gel" data-note="Cuts grease, kind to hands"></span>
+            </div>
+            <div class="cap"><b>Kitchen cleaner</b><span>Foam lifts grease, no scrubbing</span></div>
+            <div class="dots"><i class="on"></i><i></i><i></i><i></i><i></i><i></i></div>
+          </div>
+        </div>
+        <div class="glass-2 stats proof-stats" style="grid-column:1/-1;margin-top:20px">
+          <div class="stat">
+            <div class="ring">99.9%</div>
+            <h5>Germ kill</h5>
+            <p>Tested against germs and bacteria</p>
+          </div>
+          <div class="stat">
+            <div class="ring">0%</div>
+            <h5>Sulphates</h5>
+            <p>No SLS, chlorine or parabens</p>
+          </div>
+          <div class="stat">
+            <div class="ring">100%</div>
+            <h5>Plant based</h5>
+            <p>Cleansers derived from plants</p>
+          </div>
+          <div class="stat">
+            <div class="ring">4.8</div>
+            <h5>Rated</h5>
+            <p>Across 8,000+ verified reviews</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Purelane how & proof",
+  "tag": "div",
+  "class": "section-purelane-how",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Purelane how & proof"
+    }
+  ]
+}
+{% endschema %}

@@ -5,6 +5,8 @@
   if shelf_products == blank or shelf_products.size == 0
     if section.settings.collection != blank
       assign shelf_products = section.settings.collection.products
+    else
+      assign shelf_products = collections.all.products
     endif
   endif
   assign limit = section.settings.products_to_show | default: 8
@@ -25,22 +27,60 @@
 
       <div class="shelf">
         {%- if shelf_products != blank and shelf_products.size > 0 -%}
-          {%- for product in shelf_products limit: limit -%}
+          {%- assign rendered_count = 0 -%}
+          {%- for product in shelf_products -%}
+            {%- assign title_down = product.title | downcase -%}
+            {%- assign type_down = product.type | downcase -%}
+            {%- if product.gift_card or type_down contains 'gift' or title_down contains 'gift card' -%}
+              {%- continue -%}
+            {%- endif -%}
+            {%- if rendered_count >= limit -%}
+              {%- break -%}
+            {%- endif -%}
             {% render 'purelane-product-card', product: product, section: section %}
+            {%- assign rendered_count = rendered_count | plus: 1 -%}
           {%- endfor -%}
         {%- else -%}
-          {%- for i in (1..4) -%}
-            <article class="glass card rv">
-              <div class="shot">
-                <span class="pill">Sample</span>
-                <span class="pimg pl-placeholder" role="img" aria-label="Placeholder product"></span>
-              </div>
-              <h4>Add products in the theme editor</h4>
-              <div class="rate"><b>★ 4.8</b> · — reviews</div>
-              <div class="pr"><strong>—</strong></div>
-              <button type="button" class="btn btn-ghost btn-sm" disabled>Add to cart</button>
-            </article>
-          {%- endfor -%}
+          <article class="glass card rv">
+            <div class="shot">
+              <span class="pill">Best seller</span>
+              <span class="pimg p-tap" role="img" aria-label="Tap cleaner and limescale remover"></span>
+            </div>
+            <h4>Tap cleaner &amp; limescale remover</h4>
+            <div class="rate"><b>★ 4.8</b> · 237 reviews</div>
+            <div class="pr"><strong>₹200</strong><s>₹299</s><em>33% off</em></div>
+            <a class="btn btn-ghost btn-sm" href="{{ routes.all_products_collection_url }}">Add to cart</a>
+          </article>
+          <article class="glass card rv rv-d1">
+            <div class="shot">
+              <span class="pill">Best seller</span>
+              <span class="pimg p-kitchen" role="img" aria-label="Foaming kitchen cleaner"></span>
+            </div>
+            <h4>Kitchen cleaner, foaming</h4>
+            <div class="rate"><b>★ 4.8</b> · 254 reviews</div>
+            <div class="pr"><strong>₹200</strong><s>₹299</s><em>33% off</em></div>
+            <a class="btn btn-ghost btn-sm" href="{{ routes.all_products_collection_url }}">Add to cart</a>
+          </article>
+          <article class="glass card rv rv-d2">
+            <div class="shot">
+              <span class="pill">Top rated</span>
+              <span class="pimg p-metal" role="img" aria-label="Copper, bronze and brass cleaner"></span>
+            </div>
+            <h4>Copper, bronze &amp; brass cleaner</h4>
+            <div class="rate"><b>★ 4.8</b> · 231 reviews</div>
+            <div class="pr"><strong>₹200</strong><s>₹299</s><em>33% off</em></div>
+            <a class="btn btn-ghost btn-sm" href="{{ routes.all_products_collection_url }}">Add to cart</a>
+          </article>
+          <article class="glass card rv rv-d3">
+            <div class="shot">
+              <span class="pill">New</span>
+              <span class="pimg p-wm" role="img" aria-label="Washing machine cleaner and descaler"></span>
+            </div>
+            <h4>Washing machine cleaner &amp; descaler</h4>
+            <div class="rate"><b>★ 4.8</b> · 183 reviews</div>
+            <div class="pr"><strong>₹200</strong><s>₹299</s><em>33% off</em></div>
+            <a class="btn btn-ghost btn-sm" href="{{ routes.all_products_collection_url }}">Add to cart</a>
+          </article>
         {%- endif -%}
       </div>
     </div>

@@ -65,14 +65,7 @@
 
     {{ content_for_header }}
 
-    {%- if template.name == 'index' -%}
-      <link rel="preconnect" href="https://fonts.googleapis.com">
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-      <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-      {{ 'purelane.css' | asset_url | stylesheet_tag }}
-      <script src="{{ 'purelane.js' | asset_url }}" defer="defer"></script>
-      {%- assign purelane_assets_loaded = true -%}
-    {%- endif -%}
+
 
     {%- liquid
       assign body_font_bold = settings.type_body_font | font_modify: 'weight', 'bold'
@@ -323,6 +316,15 @@
       >
     {%- endif -%}
 
+    {%- if template.name == 'index' -%}
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+      {{ 'purelane.css' | asset_url | stylesheet_tag }}
+      <script src="{{ 'purelane.js' | asset_url }}" defer="defer"></script>
+      {%- assign purelane_assets_loaded = true -%}
+    {%- endif -%}
+
     <script>
       if (Shopify.designMode) {
         document.documentElement.classList.add('shopify-design-mode');
@@ -339,7 +341,11 @@
       {%- render 'cart-drawer' -%}
     {%- endif -%}
 
-    {% sections 'header-group' %}
+    {%- if template.name == 'index' -%}
+      {% render 'purelane-header' %}
+    {%- else -%}
+      {% sections 'header-group' %}
+    {%- endif -%}
 
     <main
       id="MainContent"
@@ -351,7 +357,11 @@
       {{ content_for_layout }}
     </main>
 
-    {% sections 'footer-group' %}
+    {%- if template.name == 'index' -%}
+      {% render 'purelane-footer' %}
+    {%- else -%}
+      {% sections 'footer-group' %}
+    {%- endif -%}
 
     <ul hidden>
       <li id="a11y-refresh-page-message">{{ 'accessibility.refresh_page' | t }}</li>

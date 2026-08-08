@@ -147,13 +147,49 @@
     setScene(stage, n);
   }
 
+  var isNavigating = false;
+  var navTimer = null;
+
+  function syncRail() {
+    if (isNavigating) return;
+    var railLinks = qsa(document, '.rail a');
+    if (!railLinks.length) return;
+
+    var viewH = window.innerHeight || 800;
+    var focusY = viewH * 0.35;
+    var activeIdx = 0;
+
+    for (var i = 0; i < railLinks.length; i++) {
+      var a = railLinks[i];
+      var href = a.getAttribute('href');
+      var target = (!href || href === '#' || href === '#top') ? (document.querySelector('#top') || document.querySelector('.hero')) : document.querySelector(href);
+      if (target) {
+        var rect = target.getBoundingClientRect();
+        if (rect.top <= focusY && rect.bottom > focusY) {
+          activeIdx = i;
+          break;
+        } else if (rect.top <= focusY) {
+          activeIdx = i;
+        }
+      }
+    }
+
+    railLinks.forEach(function (a, i) {
+      a.classList.toggle('on', i === activeIdx);
+    });
+  }
+
   function frame() {
     sceneRaf = null;
+    var y = window.scrollY || window.pageYOffset;
+    var hdr = document.getElementById('hdr');
+    if (hdr) hdr.classList.toggle('up', y > 90);
+
     pickScene();
+    syncRail();
 
     if (reduce) return;
 
-    var y = window.scrollY || window.pageYOffset;
     var waterLayers = qsa(document, '[data-purelane-water] .wl');
     waterLayers.forEach(function (wl, i) {
       var d = [0.05, 0.09, 0.03, 0.02][i] || 0.05;
@@ -183,9 +219,64 @@
   function syncScenes(root) {
     var scenes = qsa(root || document, '[data-purelane-scenes]');
     scenes.forEach(function (el) {
-      if (!el.getAttribute('data-d')) el.setAttribute('data-d', '1');
-      var first = el.querySelector('.scene');
-      if (first && !el.querySelector('.scene.on')) first.classList.add('on');
+      el.setAttribute('data-d', '1');
+      var s1 = el.querySelector('.scene.s1');
+      if (s1) s1.classList.add('on');
+    });
+  }
+
+  function initRotator(root) {
+    var rotators = qsa(root || document, '#rot, .rot');
+    rotators.forEach(function (rot) {
+      var rimgs = qsa(rot, '.frame .pimg');
+      var rdots = qsa(rot, '.dots i');
+      var rcapB = rot.querySelector('.cap b');
+      var rcapS = rot.querySelector('.cap span');
+      if (!rimgs.length) return;
+      var ri = 0, rtimer = null;
+      function rstep() {
+        rimgs[ri].classList.remove('on');
+        if (rdots[ri]) rdots[ri].classList.remove('on');
+        ri = (ri + 1) % rimgs.length;
+        rimgs[ri].classList.add('on');
+        if (rdots[ri]) rdots[ri].classList.add('on');
+        if (rcapB) rcapB.innerHTML = rimgs[ri].getAttribute('data-name') || '';
+        if (rcapS) rcapS.textContent = rimgs[ri].getAttribute('data-note') || '';
+      }
+      if (!reduce && 'IntersectionObserver' in window) {
+        var rio = new IntersectionObserver(function (es) {
+          es.forEach(function (e) {
+            if (e.isIntersecting && !rtimer) rtimer = setInterval(rstep, 2900);
+            else if (!e.isIntersecting && rtimer) { clearInterval(rtimer); rtimer = null; }
+          });
+        }, { threshold: 0.25 });
+        rio.observe(rot);
+      }
+    });
+  }
+
+  function initRail() {
+    var railLinks = qsa(document, '.rail a');
+    railLinks.forEach(function (a, idx) {
+      a.addEventListener('click', function (e) {
+        var href = a.getAttribute('href');
+        if (href && href.startsWith('#')) {
+          var target = href === '#top' ? (document.querySelector('#top') || document.querySelector('.hero') || document.body) : document.querySelector(href);
+          if (target) {
+            e.preventDefault();
+            isNavigating = true;
+            railLinks.forEach(function (link, i) {
+              link.classList.toggle('on', i === idx);
+            });
+            target.scrollIntoView({ behavior: 'smooth' });
+            if (navTimer) clearTimeout(navTimer);
+            navTimer = setTimeout(function () {
+              isNavigating = false;
+              syncRail();
+            }, 850);
+          }
+        }
+      });
     });
   }
 
@@ -193,6 +284,8 @@
     syncScenes(root);
     initReveal(root);
     initHero(root);
+    initRotator(root);
+    initRail();
     onScroll();
   }
 
